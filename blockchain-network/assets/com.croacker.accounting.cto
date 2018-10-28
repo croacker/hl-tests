@@ -18,6 +18,96 @@
 
 namespace com.croacker.accounting
 
+//Продавец
+asset Sailer identified by inn {
+	//Наименование
+	o String name
+	//ИНН
+	o String inn
+}
+
+
+//Магазин
 asset Shop identified by name {
+    //Продавец
+	--> Sailer sailer
+	//Наименование
     o String name
+    //Адрес
+	o String address
+}
+
+//Категория товара
+asset ProductCathegory identified by name {
+    //Наименование
+    o String name
+}
+
+//Товар
+asset Product identified by name {
+	//Наименование
+    o String name
+    //Категория товара
+	--> ProductCathegory cathegory
+}
+
+//Цена на товар у указанного продавца
+asset Price identified by id {
+    o String id
+    //Товар
+	--> Product product
+	//Продавец
+	--> Sailer sailer
+	//Цена
+	o Inreger price
+    //Дата-время
+	o DateTime dateTime
+}
+
+//Заголовок чека
+asset CheckHeader identified by name {
+	o Ineteger cashTotalSum
+	o DateTime dateTime
+	o Ineteger discount
+	o Ineteger discountSum
+	o Ineteger ecashTotalSum
+	o Ineteger fiscalDocumentNumber
+	o Ineteger fiscalDriveNumber
+	o Long fiscalSign
+	o String KktNumber
+	o String kktRegID
+	o String markup
+	o Integer markupSum
+	o Integer modifiers
+	o Integer Nds0
+	o Integer Nds10
+	o Integer Nds18
+	o Integer ndsCalculated10
+	o Integer ndsCalculated18
+	o Integer ndsNo
+	o Integer operationType
+	o String operator
+	o Integer requestNumber
+	o String RetailPlaceAddress
+	o Integer shiftNumber
+	o String StornoItems
+	o Integer taxationType
+	o Integer totalSum
+	--> Shop shop
+}
+
+type CheckItem struct {
+	o String Modifiers
+	--> Product product
+	o Integer Nds0
+	o Integer Nds10
+	o Integer Nds18
+	o Integer NdsCalculated10
+	o Integer NdsCalculated18
+	o Integer NdsNo
+	o Integer Price
+	o Double Quantity
+	o Integer Sum
+	o Boolean Storno
+	o Integer CheckHeaderID
 }
