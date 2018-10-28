@@ -1,0 +1,8 @@
+query getShopName {
+  description: "Get shop by name"
+  statement:
+    SELECT com.croacker.accounting.Shop
+      WHERE (
+        (name == _$name)
+      )
+}
