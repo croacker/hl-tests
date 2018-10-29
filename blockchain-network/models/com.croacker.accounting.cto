@@ -59,20 +59,20 @@ asset Price identified by id {
 	//Продавец
 	--> Sailer sailer
 	//Цена
-	o Inreger price
+	o Integer price
     //Дата-время
 	o DateTime dateTime
 }
 
 //Заголовок чека
-asset CheckHeader identified by name {
-	o Ineteger cashTotalSum
+asset CheckHeader identified by fiscalDocumentNumber {
+	o Integer cashTotalSum
 	o DateTime dateTime
-	o Ineteger discount
-	o Ineteger discountSum
-	o Ineteger ecashTotalSum
-	o Ineteger fiscalDocumentNumber
-	o Ineteger fiscalDriveNumber
+	o Integer discount
+	o Integer discountSum
+	o Integer ecashTotalSum
+	o String fiscalDocumentNumber
+	o Integer fiscalDriveNumber
 	o Long fiscalSign
 	o String KktNumber
 	o String kktRegID
@@ -96,18 +96,19 @@ asset CheckHeader identified by name {
 	--> Shop shop
 }
 
-type CheckItem struct {
-	o String Modifiers
+asset CheckItem identified by id {
+    o String id
+	o String modifiers
 	--> Product product
-	o Integer Nds0
-	o Integer Nds10
-	o Integer Nds18
-	o Integer NdsCalculated10
-	o Integer NdsCalculated18
-	o Integer NdsNo
-	o Integer Price
-	o Double Quantity
-	o Integer Sum
-	o Boolean Storno
-	o Integer CheckHeaderID
+	o Integer nds0
+	o Integer nds10
+	o Integer nds18
+	o Integer ndsCalculated10
+	o Integer ndsCalculated18
+	o Integer ndsNo
+	o Integer price
+	o Double quantity
+	o Integer sum
+	o Boolean storno
+	--> CheckHeader checkHeader
 }
